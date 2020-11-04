@@ -1,0 +1,41 @@
+@import "../styles/colors";
+@import "../styles/fonts";
+
+.inputField {
+  margin: 20px 0;
+
+  input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 4px solid $color-unchecked;
+    color: $color-text;
+    font-size: $font-default-size;
+    outline: none;
+    width: 100%;
+  }
+
+  .input-valid {
+    border-color: $color-success;
+  }
+
+  .input-invalid {
+    border-color: $color-error;
+  }
+
+  .input-unkown {
+    border-color: $color-unchecked;
+  }
+
+  .input-error {
+    color: $color-error;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 32px;
+    visibility: hidden;
+
+    svg {
+      fill: $color-error;
+    }
+  }
+}

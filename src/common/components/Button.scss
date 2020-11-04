@@ -1,0 +1,14 @@
+@import "../styles/colors";
+@import "../styles/fonts";
+
+button {
+  background-color: $color-success;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+  color: $color-text-secondary;
+  font-size: $font-default-size;
+  outline: none;
+  padding: 15px 30px;
+  text-transform: uppercase;
+}
