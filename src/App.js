@@ -1,14 +1,20 @@
-import React from 'react';
-import './App.scss';
-import Login from './auth/pages/Login';
-import Registration from './auth/pages/Registration';
+import React from 'react'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import './App.scss'
+import Login from './auth/pages/Login'
+import Registration from './auth/pages/Registration'
 
 function App() {
   return (
     <div className="App">
-      <Registration />
+      <Router>
+        <Switch>
+          <Route path="/registration" component={Registration} />
+          <Route path="/login" component={Login} />
+        </Switch>
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

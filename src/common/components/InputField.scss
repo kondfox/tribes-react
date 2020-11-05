@@ -1,5 +1,5 @@
-@import "../styles/colors";
-@import "../styles/fonts";
+@import '../styles/colors';
+@import '../styles/fonts';
 
 .inputField {
   margin: 20px 0;
@@ -32,10 +32,13 @@
     align-items: center;
     justify-content: space-between;
     line-height: 32px;
-    visibility: hidden;
 
     svg {
       fill: $color-error;
     }
+  }
+
+  .no-error {
+    visibility: hidden;
   }
 }

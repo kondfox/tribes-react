@@ -1,5 +1,5 @@
-@import "../styles/colors";
-@import "../styles/fonts";
+@import '../styles/colors';
+@import '../styles/fonts';
 
 button {
   background-color: $color-success;
@@ -11,4 +11,8 @@ button {
   outline: none;
   padding: 15px 30px;
   text-transform: uppercase;
+}
+
+button:disabled {
+  opacity: 0.6;
 }

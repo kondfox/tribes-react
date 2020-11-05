@@ -1,10 +1,10 @@
 import React from 'react'
 import './Button.scss'
 
-const Button = ({ label, onClick }) => {
+const Button = ({ label, isActive, onClick }) => {
   return (
-    <button onClick={onClick}>
-      { label }
+    <button disabled={!isActive} onClick={onClick}>
+      {label}
     </button>
   )
 }

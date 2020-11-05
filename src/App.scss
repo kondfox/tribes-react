@@ -1,12 +1,12 @@
-@import "./common/styles/colors";
-@import "./common/styles/fonts";
+@import './common/styles/colors';
+@import './common/styles/fonts';
 
 * {
   box-sizing: border-box;
 }
 
 .App {
-  background: url("./assets/bg3-01.png") no-repeat center center fixed;
+  background: url('./assets/bg3-01.png') no-repeat center center fixed;
   background-size: cover;
   color: $color-text;
   font-size: $font-default-size;
