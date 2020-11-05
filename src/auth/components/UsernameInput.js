@@ -2,11 +2,12 @@ import React from 'react'
 import InputField from '../../common/components/InputField'
 import { usernameValidators } from '../validators'
 
-const UsernameInput = ({ markValid }) => {
+const UsernameInput = ({ setInput, markValid }) => {
   return (
     <InputField
       placeholder="Username"
       validators={usernameValidators}
+      setInput={setInput}
       markValid={markValid}
     />
   )

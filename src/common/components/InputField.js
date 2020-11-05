@@ -4,6 +4,7 @@ import './InputField.scss'
 
 const InputField = ({
   placeholder,
+  setInput,
   markValid,
   validators = [],
   type = 'text',
@@ -22,6 +23,7 @@ const InputField = ({
 
   const onInputChange = e => {
     setFieldValue(e.target.value)
+    setInput(e.target.value)
     setValid(validity[validators.every(v => v.validate(e.target.value))])
     const failingValidation = validators.find(v => !v.validate(e.target.value))
     setError(failingValidation ? failingValidation.error : '')

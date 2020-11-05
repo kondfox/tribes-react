@@ -3,12 +3,12 @@ import Box from '../../common/components/Box'
 import PasswordInput from '../components/PasswordInput'
 import UsernameInput from '../components/UsernameInput'
 import ValidForm from '../../common/components/ValidForm'
+import { fetchService } from '../../common/services/fetchService'
 import '../auth.scss'
 
 const Login = () => {
-  const onSubmit = e => {
-    e.preventDefault()
-    console.log('login')
+  const onSubmit = reqBody => {
+    fetchService.post('/login', reqBody)
   }
 
   return (

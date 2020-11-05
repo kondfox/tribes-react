@@ -4,12 +4,12 @@ import PasswordInput from '../components/PasswordInput'
 import UsernameInput from '../components/UsernameInput'
 import ValidForm from '../../common/components/ValidForm'
 import KingdomNameInput from '../components/KingdomNameInput'
+import { fetchService } from '../../common/services/fetchService'
 import '../auth.scss'
 
 const Registration = () => {
-  const onSubmit = e => {
-    e.preventDefault()
-    console.log('registration')
+  const onSubmit = reqBody => {
+    fetchService.post('/register', reqBody)
   }
 
   return (
