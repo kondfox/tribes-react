@@ -3,13 +3,12 @@ import Box from '../../common/components/Box'
 import PasswordInput from '../components/PasswordInput'
 import UsernameInput from '../components/UsernameInput'
 import ValidForm from '../../common/components/ValidForm'
-import { fetchService } from '../../common/services/fetchService'
+import { connect } from 'react-redux'
+import { loginAction } from '../userActions'
 import '../auth.scss'
 
-const Login = () => {
-  const onSubmit = reqBody => {
-    fetchService.post('/login', reqBody)
-  }
+const Login = ({ loginAction, history }) => {
+  const onSubmit = reqBody => loginAction(reqBody, history)
 
   return (
     <div className="auth">
@@ -24,4 +23,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default connect(null, { loginAction })(Login)

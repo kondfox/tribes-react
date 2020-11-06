@@ -1,11 +1,11 @@
 import { API_URL } from '../../appSettings'
 
 export const defaultHeader = {
+  Accept: 'application/json',
   'Content-Type': 'application/json',
 }
 
-export const isSuccess = status =>
-  Number(status) && status >= 200 && status < 300
+export const isSuccess = res => res && res.status !== 'error'
 
 export const constructQueryParams = params =>
   !params
@@ -15,26 +15,22 @@ export const constructQueryParams = params =>
         .map(([p, v]) => `${p}=${v}`)
         .join('&')
 
-export const fetchService = {
-  get: async (path, params) => {
-    const url = API_URL + path + constructQueryParams(params)
-    return fetch(url)
-      .then(res => res.json())
-      .then(console.log)
-      .catch(console.error)
-  },
+export const get = async (path, params) => {
+  const url = API_URL + path + constructQueryParams(params)
+  return fetch(url)
+    .then(res => res.json())
+    .catch(console.error)
+}
 
-  post: async (path, reqBody) => {
-    const url = API_URL + path
-    const reqParams = {
-      method: 'post',
-      headers: defaultHeader,
-      body: reqBody,
-    }
+export const post = async (path, reqBody) => {
+  const url = API_URL + path
+  const reqParams = {
+    method: 'post',
+    headers: defaultHeader,
+    body: JSON.stringify(reqBody),
+  }
 
-    fetch(url, reqParams)
-      .then(res => res.json())
-      .then(console.log)
-      .catch(console.error)
-  },
+  return fetch(url, reqParams)
+    .then(res => res.json())
+    .catch(console.error)
 }

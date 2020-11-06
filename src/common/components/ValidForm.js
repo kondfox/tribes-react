@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import Button from './Button'
+import './ValidForm.scss'
 
-const ValidForm = ({ submitLabel, onSubmit, children }) => {
-  const initValues = children.reduce(
-    (v, c) => ({ ...v, [c.type.name]: undefined }),
-    {}
-  )
+const ValidForm = ({ submitLabel, onSubmit, formError, children }) => {
   const validationInit = children.reduce(
     (v, c) => ({ ...v, [c.type.name]: false }),
     {}
   )
 
-  const [inputValues, setInputValues] = useState(initValues)
+  const [inputValues, setInputValues] = useState({})
   const [validations, setValidations] = useState(validationInit)
   const [isAllValid, setAllValid] = useState(false)
 
@@ -27,7 +25,7 @@ const ValidForm = ({ submitLabel, onSubmit, children }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    onSubmit()
+    onSubmit(inputValues)
   }
 
   const fieldName = inputName =>
@@ -38,20 +36,29 @@ const ValidForm = ({ submitLabel, onSubmit, children }) => {
 
   return (
     <form>
-      {children.map(c =>
-        React.cloneElement(c, {
-          setInput: setInput(fieldName(c.type.name)),
-          markValid: markValid(c.type.name),
-          key: c.type.name,
-        })
-      )}
-      <Button
-        label={submitLabel}
-        isActive={isAllValid}
-        onClick={handleSubmit}
-      />
+      <div className="fields">
+        {children.map(c =>
+          React.cloneElement(c, {
+            setInput: setInput(fieldName(c.type.name)),
+            markValid: markValid(c.type.name),
+            key: c.type.name,
+          })
+        )}
+      </div>
+      <div className="form-control">
+        <span className={`form-error${formError ? '' : ' hidden'}`}>
+          {formError}
+        </span>
+        <Button
+          label={submitLabel}
+          isActive={isAllValid}
+          onClick={handleSubmit}
+        />
+      </div>
     </form>
   )
 }
 
-export default ValidForm
+const mapStateToProps = state => ({ formError: state.error.message })
+
+export default connect(mapStateToProps, null)(ValidForm)

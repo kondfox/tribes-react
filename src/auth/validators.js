@@ -1,6 +1,7 @@
-import { notBlank, minLength } from '../common/validators'
+import { notBlank, minLength, email } from '../common/validators'
 import { MIN_PASSWORD_LENGTH } from '../appSettings'
 
-export const usernameValidators = [notBlank]
-export const passwordValidators = [minLength(MIN_PASSWORD_LENGTH)]
+export const usernameValidators = [notBlank('Username')]
+export const passwordValidators = [minLength('Password', MIN_PASSWORD_LENGTH)]
+export const emailValidators = [notBlank('Email'), email]
 export const kingdomNameValidators = []

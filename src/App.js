@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import './App.scss'
 import Login from './auth/pages/Login'
 import Registration from './auth/pages/Registration'
+import './App.scss'
 
 function App() {
   return (

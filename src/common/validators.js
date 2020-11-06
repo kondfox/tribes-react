@@ -1,9 +1,17 @@
-export const notBlank = {
+export const notBlank = field => ({
   validate: s => !!s && !/^\s*$/.test(s),
-  error: 'cannot be empty.',
-}
-
-export const minLength = n => ({
-  validate: s => !!s && s.length >= n,
-  error: `must be at least ${n} characters.`,
+  error: `${field} cannot be empty.`,
 })
+
+export const minLength = (field, n) => ({
+  validate: s => !!s && s.length >= n,
+  error: `${field} must be at least ${n} characters.`,
+})
+
+export const email = {
+  validate: s =>
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      s
+    ),
+  error: `Invalid email address.`,
+}

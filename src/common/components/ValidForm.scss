@@ -1,0 +1,11 @@
+@import '../styles/colors';
+
+.form-control {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-error {
+  color: $color-error;
+  margin-right: 20px;
+}

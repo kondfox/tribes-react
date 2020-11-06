@@ -39,8 +39,8 @@ const InputField = ({
         onChange={onInputChange}
         value={fieldValue}
       />
-      <div className={`input-error${error.length ? '' : ' no-error'}`}>
-        <span>{`${placeholder} ${error}`}</span>
+      <div className={`input-error${error.length ? '' : ' hidden'}`}>
+        <span>{error}</span>
         <ErrorIcon />
       </div>
     </div>
