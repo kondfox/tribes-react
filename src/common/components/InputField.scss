@@ -31,7 +31,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    line-height: 32px;
+
+    span {
+      display: inline-block;
+      height: 34px;
+      line-height: 34px;
+    }
 
     svg {
       fill: $color-error;

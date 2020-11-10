@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { VALIDATE_ON } from '../validators'
 import Button from './Button'
 import './ValidForm.scss'
 
-const ValidForm = ({ submitLabel, onSubmit, formError, children }) => {
+const ValidForm = ({
+  submitLabel,
+  onSubmit,
+  validateOn,
+  formError,
+  children,
+}) => {
   const validationInit = children.reduce(
-    (v, c) => ({ ...v, [c.type.name]: false }),
+    (v, c) => ({ ...v, [c.props.name]: false }),
     {}
   )
 
   const [inputValues, setInputValues] = useState({})
   const [validations, setValidations] = useState(validationInit)
   const [isAllValid, setAllValid] = useState(false)
+  const [shouldShowErrors, setShouldShowErrors] = useState({ state: false })
 
   useEffect(() => {
     setAllValid(Object.values(validations).every(v => v))
@@ -25,23 +33,24 @@ const ValidForm = ({ submitLabel, onSubmit, formError, children }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    onSubmit(inputValues)
+    console.log('isAllValid:', isAllValid)
+    if (isAllValid) {
+      onSubmit(inputValues)
+    } else {
+      setShouldShowErrors({ state: true })
+    }
   }
-
-  const fieldName = inputName =>
-    inputName
-      .toLowerCase()
-      .replace(/input/i, '')
-      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
 
   return (
     <form>
       <div className="fields">
         {children.map(c =>
           React.cloneElement(c, {
-            setInput: setInput(fieldName(c.type.name)),
-            markValid: markValid(c.type.name),
-            key: c.type.name,
+            setInput: setInput(c.props.name),
+            markValid: markValid(c.props.name),
+            key: c.props.name,
+            validateOn,
+            shouldShowErrors,
           })
         )}
       </div>
@@ -51,7 +60,7 @@ const ValidForm = ({ submitLabel, onSubmit, formError, children }) => {
         </span>
         <Button
           label={submitLabel}
-          isActive={isAllValid}
+          isActive={validateOn === VALIDATE_ON.SUBMIT || isAllValid}
           onClick={handleSubmit}
         />
       </div>

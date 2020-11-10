@@ -1,3 +1,8 @@
+export const VALIDATE_ON = {
+  CHANGE: 'change',
+  SUBMIT: 'submit',
+}
+
 export const notBlank = field => ({
   validate: s => !!s && !/^\s*$/.test(s),
   error: `${field} cannot be empty.`,
